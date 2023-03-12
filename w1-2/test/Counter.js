@@ -1,0 +1,30 @@
+const { expect } = require("chai");
+const { ethers } = require("hardhat/internal/lib/hardhat-lib");
+let counter;
+
+describe("Counter", function () {
+    async function init() {
+        const Counter = await ethers.getContractFactory("Counter");
+        counter = await Counter.deploy(0);
+        await counter.deployed();
+        console.log("counter:" + counter.address);
+    }
+
+    before(async function () {
+        await init();
+    })
+
+    it("owner call", async function () {
+        let tx = await counter.count();
+        tx.wait();
+        expect(await counter.counter()).to.equal(1);
+    })
+
+    it("other call", async function () {
+        const [owner, otherAccount] = await ethers.getSigners();
+
+        let add = counter.connect(otherAccount).count();
+
+        await expect(add).eventually.to.rejectedWith(Error, "only owner")
+    })
+})
