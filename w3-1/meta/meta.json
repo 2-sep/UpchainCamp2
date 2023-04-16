@@ -1,0 +1,15 @@
+{
+    "name": "zeroizeNFT",
+    "description": "NFT is scam",
+    "image": "ipfs://QmdnrJUxm2M8wWguqi8Kfb9FT9kQsYGRUwJ1ZXhHJDCHWq",
+    "attributes": [
+        {
+            "trait_type": "编号",
+            "value": "001"
+        },
+        {
+            "trait_type": "创作者",
+            "value": "buaatzz"
+        }
+    ]
+}
